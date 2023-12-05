@@ -1,0 +1,5 @@
+Column 1: index moment $q$ 
+Column 2,3: scaling exponent $\tau(q)$ for the $q$-th moment of $\overline{C_4(r)^q}$
+
+The file also includes the median's slope and the fiting parameters for
+functions $\tau_1(q)$ and $\tau_2(q)$

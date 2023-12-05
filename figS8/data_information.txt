@@ -1,0 +1,21 @@
+Column 1: distance $r=\xi(t_{\text{w}})$
+Columns 2,3: Ratio 1st moment of $C_4$ to the 1st moment and its error (test)
+Columns 4,5: Ratio 2nd moment of $C_4$ to the squared 1st moment and its error
+Columns 6,7: Ratio 3rd moment of $C_4$ to the cube 1st moment and its error
+Columns 8,9: Ratio 4th moment of $C_4$ to 1st moment raised to 4 and its error
+Columns 10,11: Ratio 5th moment of $C_4$ to 1st moment raised to 5 and its error
+Columns 12,13: Ratio 6th moment of $C_4$ to 1st moment raised to 6 and its error
+Columns 14,15: Ratio 7th moment of $C_4$ to 1st moment raised to 7 and its error
+Columns 16,17: Ratio 8th moment of $C_4$ to 1st moment raised to 8 and its error
+Columns 18,19: Ratio 9th moment of $C_4$ to 1st moment raised to 9 and its error
+Columns 20,21: Ratio 10th moment of $C_4$ to 1st moment raised to 10 and its error
+Columns 22,23: Ratio 11th moment of $C_4$ to 1st moment raised to 11 and its error
+Columns 24,25: Ratio 12th moment of $C_4$ to 1st moment raised to 12 and its error
+Columns 26,27: Ratio 13th moment of $C_4$ to 1st moment raised to 13 and its error
+Columns 28,29: Ratio 14th moment of $C_4$ to 1st moment raised to 14 and its error
+Columns 30,31: Ratio 15th moment of $C_4$ to 1st moment raised to 15 and its error
+Columns 32,33: Ratio 16th moment of $C_4$ to 1st moment raised to 16 and its error
+Columns 34,35: Ratio 17th moment of $C_4$ to 1st moment raised to 17 and its error
+Columns 36,37: Ratio 18th moment of $C_4$ to 1st moment raised to 18 and its error
+Columns 38,39: Ratio 19th moment of $C_4$ to 1st moment raised to 19 and its error
+Columns 40,41: Ratio 20th moment of $C_4$ to 1st moment raised to 20 and its error

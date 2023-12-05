@@ -1,0 +1,2 @@
+Column 1: coherence length $\xi(t_{\text{w}})$
+Columns 2,3:Exponent $B(\xi)$ and its error

@@ -1,0 +1,8 @@
+Column 1: displacement $r_x$
+Column 2: displacement $r_y$
+Column 3: displacement $r_z$
+column 4: coordinate x of vector $\boldsymbol{x}+\boldsymbol{r}$
+column 5: coordinate y of vector $\boldsymbol{x}+\boldsymbol{r}$
+column 6: coordinate z of vector $\boldsymbol{x}+\boldsymbol{r}$
+column 7: population count used to estimate $C_4(\boldsymbol{x},\boldsymbol{x}+\boldsymbol{r},t_{\text{w}})=N-{\text{R}}-2{\tt popcount}$
+column 8: $C_4(\boldsymbol{x},\boldsymbol{x}+\boldsymbol{r},t_{\text{w}})$

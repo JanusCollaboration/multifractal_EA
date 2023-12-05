@@ -1,0 +1,78 @@
+reset
+set auto
+
+set fit noerrorscaling
+
+f(x)=a+b*log(x)
+
+fit [10:*] f(x) "data/data_T09.txt" u 1:2:3 yerror via a,b
+
+############################
+set term epslatex standalone size 8.7cm, 5.8cm font ",12" ##8 minimo permitido Latex
+
+# Sobre los tamaños para PNAS:
+# 9x6 cm --> Pequeño ~ una columna
+# 11x11 cm --> Mediano
+# 18x22 cm --> Grande
+
+# 6pts <= font size <= 12pts
+
+set output "figS4.tex"
+############################
+
+############################
+#ColorBlind friendly palette
+############################
+colorSet(name, rgb) = sprintf("color_\%s = \%d", name, rgb)
+colorGet(name) = value(sprintf("color_\%s", name))
+
+eval colorSet("c1", 0x666666)
+eval colorSet("c2", 0xe84b85)
+eval colorSet("c3", 0x8f4427)
+eval colorSet("c4", 0x4bb0b8)
+eval colorSet("c5", 0x000000)
+eval colorSet("c6", 0xe69f00)
+eval colorSet("c7", 0x008000)
+eval colorSet("c8", 0x9400d3)
+eval colorSet("c9", 0xff0000)
+eval colorSet("c10",0x1000b3)
+
+############################
+# Margenes
+############################
+set tmargin 0.55
+set rmargin 0.75
+set lmargin 5
+
+############################
+# Ejes
+############################
+set xrange[4.5:21]
+set yrange[1.5:2.1]
+
+set logscale x
+
+set xtics offset 0,0.25
+set ytics offset 0.7,0
+
+set xlabel "$\\xi$" offset 0,0.75
+set ylabel "$B(\\xi)$" offset 2,0
+
+
+############################
+# Leyenda
+############################
+#set key at 0.03,0.02 spacing 1 sample 1 spacing 1.25
+############################
+# Plot
+###########################
+
+plot "data/data_T09.txt" u 1:2:3 w yerror lc rgb colorGet("c10") not, f(x) not dt 2 lw 2 lc rgb colorGet("c9")
+
+############################
+# Output
+############################
+set out
+!pdflatex figS4.tex
+!rm *.tex *.log *converted* *.aux *.eps
+###

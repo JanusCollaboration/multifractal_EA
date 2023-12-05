@@ -1,0 +1,9 @@
+data_T09.txt
+============
+Column 1: distance $r=\xi(t_{\text{w}})$
+Column 2,3: 10th moment of $C_4$ and its erro
+Column 4,5: 20th moment of $C_4$ and its erro
+
+data_tau??.txt
+==============
+It constaints the value of $\tau(q)$ (with $q$ in the name of the file) from our final estimates

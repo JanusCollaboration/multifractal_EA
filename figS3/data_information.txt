@@ -1,0 +1,2 @@
+Column 1: number of replicas $N_{\text{R}}$
+Columns 2,3: Expectation value of ${\cal I}(N_{\text{R}})$ and its error

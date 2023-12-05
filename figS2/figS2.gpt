@@ -1,0 +1,74 @@
+reset
+set auto
+
+set fit noerrorscaling
+
+f(x) = a*x**b
+fit f(x) "data/data_T09.txt" u 2:4:3:5 xyerror via a,b
+
+############################
+set term epslatex standalone size 8.7cm, 5.8cm font ",12" ##8 minimo permitido Latex
+
+# Sobre los tamaños para PNAS:
+# 9x6 cm --> Pequeño ~ una columna
+# 11x11 cm --> Mediano
+# 18x22 cm --> Grande
+
+# 6pts <= font size <= 12pts
+
+set output "figS2.tex"
+############################
+
+############################
+#ColorBlind friendly palette
+############################
+colorSet(name, rgb) = sprintf("color_\%s = \%d", name, rgb)
+colorGet(name) = value(sprintf("color_\%s", name))
+
+eval colorSet("c1", 0x666666)
+eval colorSet("c2", 0xe84b85)
+eval colorSet("c3", 0x8f4427)
+eval colorSet("c4", 0x4bb0b8)
+eval colorSet("c5", 0x000000)
+eval colorSet("c6", 0xe69f00)
+eval colorSet("c7", 0x008000)
+eval colorSet("c8", 0x9400d3)
+eval colorSet("c9", 0xff0000)
+eval colorSet("c10",0x1000b3)
+
+############################
+# Margenes
+############################
+set tmargin 0.45
+set rmargin 0.75
+set lmargin 6.5
+
+############################
+# Ejes
+############################
+set xrange[0.05:0.12]
+set yrange[0.01:0.05]
+
+set xlabel "$\\overline{C_4}$" offset 0,0.75
+set ylabel "Median of $C_4$" offset 2,0
+
+
+set xtics (0.05,"" 0.06, "" 0.07, "" 0.08, "" 0.09, 0.1, "" 0.11) offset 0,0.25
+set ytics (0.02,0.03,0.04) offset 0.5,0
+############################
+# Leyenda
+############################
+#set key at 0.03,0.02 spacing 1 sample 1 spacing 1.25
+############################
+# Plot
+############################
+plot "data/data_T09.txt" u 2:4:3:5 w xyerror lc rgb colorGet("c10") not, f(x) not dt 2 lw 2 lc rgb colorGet("c9")
+
+############################
+# Output
+############################
+set out
+!pdflatex figS2.tex
+!rm *.tex *.log *converted* *.aux *.eps
+###
+

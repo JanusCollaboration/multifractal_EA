@@ -1,0 +1,79 @@
+reset
+set auto
+
+set fit noerrorscaling
+
+f(x)=a0+a1*x+a2*x*x
+g(x)=b0+b1*x+b2*x*x
+
+fit f(x) "data/data_T09.txt" u (1/$2):3:4 yerr via a0,a1,a2
+fit g(x) "data/data_T09.txt" u (1/$2):5:6 yerr via b0,b1,b2
+
+############################
+set term epslatex standalone size 8.7cm, 5.8cm font ",12" header "\\usepackage{bm,amsmath}"##8 minimo permitido Latex
+
+# Sobre los tamaños para PNAS:
+# 9x6 cm --> Pequeño ~ una columna
+# 11x11 cm --> Mediano
+# 18x22 cm --> Grande
+
+# 6pts <= font size <= 12pts
+
+set output "figS1.tex"
+############################
+
+############################
+#ColorBlind friendly palette
+############################
+colorSet(name, rgb) = sprintf("color_\%s = \%d", name, rgb)
+colorGet(name) = value(sprintf("color_\%s", name))
+
+eval colorSet("c1", 0x666666)
+eval colorSet("c2", 0xe84b85)
+eval colorSet("c3", 0x8f4427)
+eval colorSet("c4", 0x4bb0b8)
+eval colorSet("c5", 0x000000)
+eval colorSet("c6", 0xe69f00)
+eval colorSet("c7", 0x008000)
+eval colorSet("c8", 0x9400d3)
+eval colorSet("c9", 0xff0000)
+eval colorSet("c10",0x1000b3)
+
+############################
+# Margenes
+############################
+set tmargin 0.45
+set rmargin 0.75
+set lmargin 6.5
+
+############################
+# Ejes
+############################
+set xrange[0:0.035]
+set yrange[*:0.028]
+
+set xlabel "$1/N_{\\text{R}}$" offset 0,0.75
+set ylabel "Median of $C_4$" offset 2,0
+
+
+set xtics (0, 0.01, 0.02, 0.03) offset 0,0.25
+set ytics (-0.01,0,0.01,0.02) offset 0.5,0
+############################
+# Leyenda
+############################
+set key at 0.025,0.02 sample 1 spacing 1.25 Left reverse
+############################
+# Plot
+############################
+
+p\
+"data/data_T09.txt" u (1/$2):3:4 w yerror t "$\\left[C_4\\right]$", f(x) dt 2 lw 2 not,\
+"data/data_T09.txt" u (1/$2):5:6 w yerr t "$\\left[S_{\\bm{x}}S_{\\bm{x}+\\bm{r}}\\right]^2$", g(x) dt 2 lw 2 not
+
+############################
+# Output
+############################
+set out
+!pdflatex figS1.tex
+!rm *.tex *.log *converted* *.aux *.eps
+###

@@ -1,0 +1,3 @@
+Column 1: distance $r=\xi(t_{\text{w}})$
+Columns 2,3: 1st moment of $C_4(r=\xi)$ and its error
+Columns 4,5: median of the distribution $P[C_4(r=\xi)]$ and its error

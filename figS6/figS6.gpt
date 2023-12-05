@@ -1,0 +1,87 @@
+reset
+set auto
+
+set fit noerrorscaling
+
+tau_10=`cat data/data_tau10.txt`
+
+tau_20=`cat data/data_tau20.txt`
+
+f0(x) = A0/x**tau_10
+g0(x) = B0/x**tau_20
+
+fit [10:*] f0(x) "data/data_T09.txt" u 1:2:3 yerr via A0
+fit [10:*] g0(x) "data/data_T09.txt" u 1:4:5 yerr via B0
+
+############################
+set term epslatex standalone size 8.7cm, 5.8cm font ",12" ##8 minimo permitido Latex
+
+# Sobre los tamaños para PNAS:
+# 9x6 cm --> Pequeño ~ una columna
+# 11x11 cm --> Mediano
+# 18x22 cm --> Grande
+
+# 6pts <= font size <= 12pts
+
+set output "figS6.tex"
+############################
+
+############################
+#ColorBlind friendly palette
+############################
+colorSet(name, rgb) = sprintf("color_\%s = \%d", name, rgb)
+colorGet(name) = value(sprintf("color_\%s", name))
+
+eval colorSet("c1", 0x666666)
+eval colorSet("c2", 0xe84b85)
+eval colorSet("c3", 0x8f4427)
+eval colorSet("c4", 0x4bb0b8)
+eval colorSet("c5", 0x000000)
+eval colorSet("c6", 0xe69f00)
+eval colorSet("c7", 0x008000)
+eval colorSet("c8", 0x9400d3)
+eval colorSet("c9", 0xff0000)
+eval colorSet("c10",0x1000b3)
+
+
+############################
+# Margenes
+############################
+set tmargin 0.45
+set rmargin 0.75
+set lmargin 5.5
+
+############################
+# Ejes
+############################
+set logs
+set xrange [3:21]
+set yrange [2e-5:2e-3]
+
+set xlabel "$\\xi$" offset 0,1.2
+set ylabel "$\\overline{C_4^{q}}$" offset 2.4,0
+
+set format y "$10^{%T}$"
+set ytics offset 0.75,0
+set xtics offset 0,0.4
+
+############################
+# Leyenda
+############################
+set key at 19,1.5e-3 sample 1 spacing 1.25 width -2.5 reverse
+
+############################
+# Plot
+############################
+
+plot \
+     "data/data_T09.txt" u 1:2:3 w yerror t "$\\overline{C_4^{10}}$" lc rgb colorGet("c7"), f0(x) dt 2 lw 2 lc rgb colorGet("c3") not,\
+     "data/data_T09.txt" u 1:4:5 w yerror lc rgb colorGet("c2") t "$\\overline{C_4^{20}}$", g0(x) dt 2 lw 2 lc rgb colorGet("c4") not
+     
+############################
+# Output
+############################
+set out
+!pdflatex figS6.tex
+!rm *.tex *.log *converted* *.aux *.eps
+###
