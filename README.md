@@ -1,8 +1,13 @@
 # Figures of "Multifractality in spin glasses"
 
-The scripts and the data needed to reproduce the figures on the article "Multifractality in spin glasses" (https://arxiv.org/abs/2306.04591) are provided.
+The scripts and the data needed to reproduce the figures on the article
+"Multifractality in spin glasses" (https://arxiv.org/abs/2306.04591) are
+provided. Folder `MAIN/` contains the figures and data corresponding to the
+main article, while `SI/` has the figures and data for the supplemental
+information.
 
-Each directory corresponds to one figure. Inside each directory you can find:
+Inside `MAIN/` and `SI/`, each directory corresponds to one figure. In
+each directory `fig??/` you can find:
 
 1. A gnuplot (.gpt) script of the figure.
 2. A directory "data" with all the needed data for the figure.
