@@ -1,0 +1,117 @@
+reset
+set auto
+
+############################
+set term epslatex size 8.7cm, 10.44cm font ",12" standalone header "\\usepackage{amsmath}" ##8 minimo permitido Latex
+
+# Sobre los tamaños para PNAS:
+# 9x6 cm --> Pequeño ~ una columna
+# 11x11 cm --> Mediano
+# 18x22 cm --> Grande
+
+# 6pts <= font size <= 12pts
+
+set output "fig2.tex"
+############################
+
+############################
+#ColorBlind friendly palette
+############################
+colorSet(name, rgb) = sprintf("color_\%s = \%d", name, rgb)
+colorGet(name) = value(sprintf("color_\%s", name))
+
+eval colorSet("c1", 0x666666)
+eval colorSet("c2", 0xe84b85)
+eval colorSet("c3", 0x8f4427)
+eval colorSet("c4", 0x4bb0b8)
+eval colorSet("c5", 0x000000)
+eval colorSet("c6", 0xe69f00)
+eval colorSet("c7", 0x008000)
+eval colorSet("c8", 0x9400d3)
+eval colorSet("c9", 0xff0000)
+eval colorSet("c10",0x1000b3)
+
+
+############################
+# Margenes
+############################
+set tmargin 0.5
+set rmargin 0.75
+set lmargin 5.5
+set bmargin 0
+
+############################
+# Ejes
+############################
+set logs
+set xrange [3:24]
+set yrange [7e-2:2e-1]
+
+set format x ""
+set ytics ("" 0.07,"" 0.08,"" 0.09, "0.1" 0.1) offset 0.8,0
+
+set xtics ("" 4,"" 5, "" 6, "" 7, "" 8, "" 9, "" 10, "" 20) offset 0,0.2
+
+unset xlabel
+set ylabel "$C^{\\text{av}}_4(r=\\xi)$" offset 2.2,0
+
+
+############################
+# Leyenda
+############################
+set key at 21.5,0.098 maxrow 3 samplen 1 width -0.25 Left reverse spacing 1.1
+set object 1 rectangle back at 20,0.182 size char strlen("DIL")+1, char 1.5 fillstyle empty border -1 front
+set label 2 "DIL" at 20,0.18 center
+
+############################
+# Plot
+############################
+set fit noerrorscaling
+f(x) = A/x**B
+fit [10:*] f(x) "data/data_EA_T09_fit.txt" u 1:2:3 yerror via A,B
+
+set multiplot layout 1,2
+set origin 0,0.532
+set size 1, 0.467
+
+set ytics add (0.09,0.08,0.2)
+
+p "data/data_DIL_T09.txt" u 1:2:3 w yerror ps 1 pt 8 lc rgb colorGet("c9")  t "$\\tilde{T}=0.9$",\
+"data/data_DIL_T08.txt" u 1:2:3 w yerror ps 1 pt 4 lc rgb colorGet("c7")  t "$\\tilde{T}=0.8$",\
+"data/data_DIL_T07.txt" u 1:2:3 w yerror ps 1 pt 10 lc rgb colorGet("c10")  t "$\\tilde{T}=0.7$"
+
+unset label
+unset object
+#Second plot
+set tmargin 0
+set bmargin 2
+set origin 0,0
+set size 1,0.532
+
+set yrange [6e-2:1.3e-1]
+set ytics (0.07, 0.08,0.09, "0.1" 0.1) offset 0.8,0
+
+set xtics ("" 4,"5" 5, "" 6, "" 7, "" 8, "" 9, "10" 10, "20" 20) offset 0,0.2
+set xlabel "$\\xi$" offset 0,1
+
+set key at 20.1,0.127 maxrow 3 samplen 1 width -0.25 Left reverse spacing 1.1
+#set label 1 "\\underline{EA}" at 16.5,0.117 center
+#unset label 2
+
+set object 1 rectangle back at 20,0.0648 size char strlen("DIL")+1, char 1.5 fillstyle empty border -1 front
+set label 2 "EA" at 20,0.064 center
+
+p f(x) dt 2 lc rgb colorGet("c1") lw 2 not,\
+"data/data_EA_T09.txt" u 1:2:3 w yerror pt 9 ps 1 lc rgb colorGet("c9") t "$T=0.9$",\
+"data/data_EA_T08.txt" u 1:2:3 w yerror pt 5 ps 1 lc rgb colorGet("c7")  t "$T=0.8$",\
+"data/data_EA_T07.txt" u 1:2:3 w yerror ps 1 pt 11 lc rgb colorGet("c10")  t "$T=0.7$"
+
+unset multiplot
+
+############################
+# Output
+############################
+set out
+!pdflatex fig2.tex
+!rm *.tex *.log *converted* *.aux *.eps
+###
