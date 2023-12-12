@@ -1,3 +1,0 @@
-Column 1: distance $r=\xi(t_{\text{w}})$
-Column 2,3: 1st moment of $C_4(r)$ and its error
-Column 4,5: Ratio of the 2nd moment of $C_4(r)$ to the squared 1st moment

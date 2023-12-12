@@ -1,4 +1,0 @@
-Column 1: waiting time $t_{\text{w}}$
-Column 2: distance $r$
-Column 3: correlation function $C_4^{\text{av}}(r)$
-Column 4: error in correlation function $\Delta C_4^{\text{av}}(r)$

@@ -1,5 +1,0 @@
-Column 1: index moment $q$
-Column 2,3: derivative of tau with respect to q ($\alpha$) for $\tau_1(q)$
-Column 4,5: Legendre transformation of $\tau_1(q)$
-Column 6,7: derivative of tau with respect to q ($\alpha$) for $\tau_2(q)$
-Column 8,9: Legendre transformation of $\tau_2(q)$
